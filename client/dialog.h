@@ -3,7 +3,7 @@
 #include <QDialog>
 #include <QTcpSocket>
 #include <QHostAddress>
-#include "C:\QT\2\3\server\myclient.h"
+#include "C:myclient.h"
 class  MyClient;
 
 namespace Ui {
