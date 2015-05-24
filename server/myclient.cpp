@@ -1,23 +1,17 @@
 #include "myclient.h"
 
-
-// ????????
 MyClient::MyClient(int desc, MyServer *serv1, QObject *parent) :QObject(parent)
 {
 
     serv = serv1;
     Authorization = false;
-
     blockSize = 0;
     sok = new QTcpSocket(this);
-    //????????? ????? ? ??????
     sok->setSocketDescriptor(desc);
-    //?????????? ???????
     connect(sok, SIGNAL(connected()), this, SLOT(Connect()));
     connect(sok, SIGNAL(disconnected()), this, SLOT(Disconnect()));
     connect(sok, SIGNAL(readyRead()), this, SLOT(Options()));
     connect(sok, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(Error(QAbstractSocket::SocketError)));
-
 
 }
 
@@ -35,7 +29,6 @@ void MyClient::Disconnect()
 {
     if (Authorization==true)
     {
-
         emit DisconnectUser(name);
         serv->SendToAllUserOffline(name);
         emit DisconUser(this);
@@ -52,14 +45,14 @@ void MyClient::Error(QAbstractSocket::SocketError socketError)
         break;
        // Адрес узла не найден
     case QAbstractSocket::HostNotFoundError:
-        QMessageBox::information(&window, "??????", "// Адрес узла не найден");
+        QMessageBox::information(&window, "Ошибка", "Адрес узла не найден");
         break;
         //Соединение было разорвано другим узлом (или по тайм-ауту)
     case QAbstractSocket::ConnectionRefusedError:
-        QMessageBox::information(&window, "??????", "?????????? ???? ????????? ?????? ????? (??? ?? ????-????).");
+        QMessageBox::information(&window, "Ошибка", "Соединение было разорвано другим узлом (или по тайм-ауту)");
         break;
     default:
-        QMessageBox::information(&window, "??????", "????????? ??????: "+sok->errorString());
+        QMessageBox::information(&window, "Ошбика", "Произошла ошибка: "+sok->errorString());
     }
 
 }
@@ -94,7 +87,6 @@ void MyClient::Options()
         //авторизация
         case Registration:
         {
-
             QString  user;
             data >> user;
             // неправильный ник
