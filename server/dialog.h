@@ -1,6 +1,5 @@
 #ifndef DIALOG_H
 #define DIALOG_H
-
 #include <QDebug>
 #include <QtGui>
 #include <QtCore>
