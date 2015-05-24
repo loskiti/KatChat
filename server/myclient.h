@@ -55,7 +55,7 @@ signals:
     void DisconnectUser(QString name);
     // удаление пользователя из списка
     void DisconUser(MyClient *client);
-// сообщения пользователей
+    // сообщения пользователей
     void messageUser(QString message, QString from, const QStringList &users);
 
 private slots:
