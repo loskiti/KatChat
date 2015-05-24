@@ -1,6 +1,5 @@
 #ifndef MYSERVER_H
 #define MYSERVER_H
-
 #include <QTcpServer>
 #include <QDebug>
 #include "myclient.h"
